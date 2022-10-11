@@ -35,3 +35,5 @@ Route::resource('categories','CategoriesController');
 Route::get('tags/view','TagsController@ajaxlisting')->name('tags.listing');
 
 Route::resource('tags','TagsController');
+
+//banner
