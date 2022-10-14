@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Yajra\Datatables\Datatables;
 
-class BlogController extends Controller
+class Social_mediaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,11 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view('admin::blog.index');
+        return view('admin::social_media.index');
     }
     public function ajaxlisting(Request $request)
     {
-        $sql = \App\Models\Blog::select("*");
+        $sql = \App\Models\Social_media::select("*");
 
 
         return Datatables::of($sql)
@@ -33,30 +33,12 @@ class BlogController extends Controller
                 return $data->title;
             })
 
-            ->editColumn('categories', function ($data) {
-
-                $getcategories = \App\Models\Categories::where('id', $data->categories)->first();
-
-                if ($getcategories != null) {
-
-                    return $getcategories->name;
-                }else{
-                    return "_";
-                }
-            })
-
-            ->editColumn('tags', function ($data) {
-
-                $gettags = \App\Models\Tags::where('id', $data->tags)->first();
-
-                if ($gettags != null) {
-
-                    return $gettags->name;
-                }
+            ->editColumn('link', function ($data) {
+                return $data->link;
             })
 
             ->editColumn('image', function ($data) {
-                return '<img src="' . \asset('uploads/blog') . '/' . $data->image . '">';
+                return '<img src="' . \asset('uploads/social_media') . '/' . $data->image . '">';
             })
 
             ->editColumn('status', function ($data) {
@@ -72,14 +54,14 @@ class BlogController extends Controller
 
             ->addColumn('action', function ($data) {
 
-                $string = '<a href="' . route('blog.edit', $data->id) . '" class="btn btn-primary btn-sm">' . trans('lang_data.edit_lable') . '</a> <a href="' . route('blog.show', $data->id) . '" class="btn btn-danger btn-sm">' . trans('lang_data.delete_lable') . ' </a> ';
+                $string = '<a href="' . route('social_media.edit', $data->id) . '" class="btn btn-primary btn-sm">' . trans('lang_data.edit_lable') . '</a> <a href="' . route('social_media.show', $data->id) . '" class="btn btn-danger btn-sm">' . trans('lang_data.delete_lable') . ' </a> ';
 
 
                 return $string;
             })
             ->filter(function ($query) use ($request) {
             })
-            ->rawColumns(['id', 'title', 'categories', 'tags', 'image', 'status', 'action'])
+            ->rawColumns(['id', 'title', 'link', 'image', 'status', 'action'])
             ->make(true);
     }
     /**
@@ -88,10 +70,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $gettags = \App\Models\Tags::pluck('name', 'id')->toarray();
-        $getcategories = \App\Models\Categories::pluck('name', 'id')->toarray();
-
-        return view('admin::blog.addedit', compact('gettags', 'getcategories'));
+        return view('admin::social_media.addedit');
     }
 
     /**
@@ -104,8 +83,7 @@ class BlogController extends Controller
         $request->validate(
             [
                 'title' => 'required',
-                'categories' => 'required',
-                'tags' => 'required',
+                'link' => 'required',
                 'image' => 'required',
                 'status' => 'required',
             ],
@@ -114,10 +92,9 @@ class BlogController extends Controller
             ]
         );
 
-        $obj = new \App\Models\Blog;
+        $obj = new \App\Models\Social_media;
         $obj->title = $request->title;
-        $obj->categories = $request->categories;
-        $obj->tags = $request->tags;
+        $obj->link = $request->link;
         $obj->status = $request->status;
 
         $img = $request->file('image');
@@ -126,14 +103,14 @@ class BlogController extends Controller
 
             // @unlink('uploads/categories/' . $be->intro_bg2);
             $filename = rand() . '.' . $img->getClientOriginalExtension();
-            $img->move('uploads/blog/', $filename);
+            $img->move('uploads/social_media/', $filename);
 
             $obj->image = $filename;
         }
 
         $obj->save();
 
-        return redirect()->route('blog.index');
+        return redirect()->route('social_media.index');
     }
 
     /**
@@ -143,13 +120,12 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        $editdata = \App\Models\Blog::where('id', $id)->firstOrfail();
-        @unlink('uploads/blog/' . $obj->image);
+        $obj = \App\Models\Social_media::where('id', $id)->firstOrfail();
+        @unlink('uploads/social_media/' . $obj->image);
 
-        $editdata->delete();
+        $obj->delete();
 
-        return redirect()->route('blog.index');
-
+        return redirect()->route('social_media.index');
     }
 
     /**
@@ -159,12 +135,9 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        $editdata = \App\Models\Blog::where('id', $id)->firstOrfail();
+        $editdata = \App\Models\Social_media::where('id', $id)->firstOrfail();
 
-        $gettags = \App\Models\Tags::pluck('name', 'id')->toarray();
-        $getcategories = \App\Models\Categories::pluck('name', 'id')->toarray();
-
-        return view('admin::blog.addedit', compact('gettags', 'getcategories', 'editdata'));
+        return view('admin::social_media.addedit',compact('editdata'));
     }
 
     /**
@@ -178,8 +151,7 @@ class BlogController extends Controller
         $request->validate(
             [
                 'title' => 'required',
-                'categories' => 'required',
-                'tags' => 'required',
+                'link' => 'required',
                 'image' => 'required',
                 'status' => 'required',
             ],
@@ -188,26 +160,25 @@ class BlogController extends Controller
             ]
         );
 
-        $obj =  \App\Models\Blog::where('id', $id)->first();
+        $obj =  \App\Models\Social_media::where('id', $id)->first();
         $obj->title = $request->title;
-        $obj->categories = $request->categories;
-        $obj->tags = $request->tags;
+        $obj->link = $request->link;
         $obj->status = $request->status;
 
         $img = $request->file('image');
 
         if ($request->hasFile('image')) {
 
-            @unlink('uploads/blog/' . $obj->image);
+            @unlink('uploads/social_media/' . $obj->image);
             $filename = rand() . '.' . $img->getClientOriginalExtension();
-            $img->move('uploads/blog/', $filename);
+            $img->move('uploads/social_media/', $filename);
 
             $obj->image = $filename;
         }
 
         $obj->save();
 
-        return redirect()->route('blog.index');
+        return redirect()->route('social_media.index');
     }
 
     /**

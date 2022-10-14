@@ -11,10 +11,10 @@
                             <a href="{{ route('admin') }}">{{ trans('lang_data.home_lable') }}</a><i class="mdi mdi-record"></i>
                         </li>
                         <li class="ab">
-                            <a href="{{ route('blog.index') }}">Blog {{ trans('lang_data.listing_lable') }}</a><i
+                            <a href="{{ route('blog.index') }}">Social_Media {{ trans('lang_data.listing_lable') }}</a><i
                                 class="mdi mdi-record"></i>
                         <li class="ab active">
-                            {{ trans('lang_data.edit_lable') }} Blog
+                            {{ trans('lang_data.edit_lable') }} Social_Media
                         </li>
 
                     </ul>
@@ -25,9 +25,9 @@
                         <a href="{{ route('admin') }}">{{ trans('lang_data.home_lable') }}</a><i class="mdi mdi-record"></i>
                     </li>
                     <li class="ab">
-                        <a href="{{ route('banner.index') }}">Blog {{ trans('lang_data.listing_lable') }}</a><i class="mdi mdi-record"></i>
+                        <a href="{{ route('social_media.index') }}">Social_Media {{ trans('lang_data.listing_lable') }}</a><i class="mdi mdi-record"></i>
                     <li class="ab active">
-                        {{ trans('lang_data.add_lable') }} Blog
+                        {{ trans('lang_data.add_lable') }} Social_Media
                     </li>
 
                 </ul>
@@ -35,23 +35,23 @@
 
             <h3 class="ab">
                 &nbsp; @if (isset($editdata))
-                    {{ trans('lang_data.edit_lable') }} Blog
+                    {{ trans('lang_data.edit_lable') }} Social_Media
                 @else
-                    {{ trans('lang_data.add_lable') }} Blog
+                    {{ trans('lang_data.add_lable') }} Social_Media
                 @endif
             </h3>
 
             @if (isset($editdata))
                 {!! Form::model($editdata, [
-                    'url' => route('blog.update', $editdata->id),
-                    'id' => 'blog',
+                    'url' => route('social_media.update', $editdata->id),
+                    'id' => 'social_media',
                     'method' => 'put',
                     'enctype' => 'multipart/form-data',
                 ]) !!}
             @else
                 {!! Form::open([
-                    'url' => route('blog.store'),
-                    'id' => 'blog',
+                    'url' => route('social_media.store'),
+                    'id' => 'social_media',
                     'method' => 'post',
                     'enctype' => 'multipart/form-data',
                 ]) !!}
@@ -72,29 +72,18 @@
             </div>
 
             <div class="form-group">
-                <label>Categories:</label>
-                {!! Form::select('categories', $getcategories, null, [
-                    'id' => 'categories',
-                    'placeholder' => 'select categories',
+                <label>Link:</label>
+                {!! Form::url('link', null, [
+                    'id' => 'link',
+                    'placeholder' => 'Enter link',
                     'class' => 'form-control',
                 ]) !!}
-                @if ($errors->has('categories'))
-                    <span class="text-danger">{{ $errors->first('categories') }}</span>
+                @if ($errors->has('link'))
+                    <span class="text-danger">{{ $errors->first('link') }}</span>
                 @endif
             </div>
 
 
-            <div class="form-group">
-                <label>Tags:</label>
-                {!! Form::select('tags', $gettags, null, [
-                    'id' => 'tags',
-                    'placeholder' => 'select tags',
-                    'class' => 'form-control',
-                ]) !!}
-                @if ($errors->has('tags'))
-                    <span class="text-danger">{{ $errors->first('tags') }}</span>
-                @endif
-            </div>
 
             <div class="form-group">
                 <div>
@@ -127,7 +116,7 @@
 
             {!! Form::submit('' . trans('lang_data.submit_lable') . '', ['class' => 'btn btn-primary']) !!}
 
-            <a href="{{ route('blog.index') }}" class="btn btn-danger">{{ trans('lang_data.cancle_lable') }}</a>
+            <a href="{{ route('social_media.index') }}" class="btn btn-danger">{{ trans('lang_data.cancle_lable') }}</a>
 
             {!! Form::close() !!}
 

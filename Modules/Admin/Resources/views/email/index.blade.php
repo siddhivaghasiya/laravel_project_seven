@@ -14,17 +14,17 @@
                         "></i>
                     </li>
                     <li class="ab active">
-                        Tags {{ trans('lang_data.listing_lable') }}
+                        Email {{ trans('lang_data.listing_lable') }}
                     </li>
                 </ul>
             </div>
 
             <div>
-                <h3 class="ab"> &nbsp; Tags {{trans('lang_data.listing_lable')}}
+                <h3 class="ab"> &nbsp; Email {{trans('lang_data.listing_lable')}}
                 </h3>
             </div>
 
-            <h4><a href="{{ route('tags.create') }}" class="btn btn-info btn-sm">{{trans('lang_data.addnew_lable')}}
+            <h4><a href="{{ route('email.create') }}" class="btn btn-info btn-sm">{{trans('lang_data.addnew_lable')}}
             </a></h4>
 
             <div class="table-responsive">
@@ -32,7 +32,9 @@
               <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Name</th>
+                    <th>Title</th>
+                    <th>From</th>
+                    <th>Subject</th>
                     <th>{{trans('lang_data.status_lable')}}</th>
                     <th>{{trans('lang_data.action_lable')}}</th>
                 </tr>
@@ -53,14 +55,16 @@
           searching:false,
           responsive: true,
           ajax: {
-                url:'{!! route('tags.listing') !!}',
+                url:'{!! route('email.listing') !!}',
                 data: function (d) {
 
                 }
               },
           columns: [
             { data: 'id'},
-            { data: 'name'},
+            { data: 'title'},
+            { data: 'from'},
+            { data: 'subject'},
             { data: 'status'},
             { data: 'action'},
           ]

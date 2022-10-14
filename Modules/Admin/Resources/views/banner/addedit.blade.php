@@ -5,58 +5,54 @@
 <div class="card">
     <div class="card-body">
 
-        @if (isset($editdata))
-        <div>
-            <ul class="ab">
-                <li class="ab">
-                    <a href="{{ route('admin') }}">{{ trans('lang_data.home_lable') }}</a><i class="mdi mdi-record"></i>
-                </li>
-                <li class="ab">
-                    <a href="{{ route('categories.index') }}">Categories {{ trans('lang_data.listing_lable') }}</a><i
-                        class="mdi mdi-record"></i>
-                <li class="ab active">
-                    {{ trans('lang_data.edit_lable') }} Categories
-                </li>
-
-            </ul>
-        </div>
-    @else
+    @if(isset($editdata)) <div>
         <ul class="ab">
             <li class="ab">
-                <a href="{{ route('admin') }}">{{ trans('lang_data.home_lable') }}</a><i
-                    class="mdi mdi-record
-    "></i>
-            </li>
-            <li class="ab">
-                <a href="{{ route('categories.index') }}">Categories {{ trans('lang_data.listing_lable') }}</a><i
-                    class="mdi mdi-record
-    "></i>
-            <li class="ab active">
-                {{ trans('lang_data.add_lable') }} Categories
-            </li>
+                <a href="{{route('admin')}}">{{ trans('lang_data.home_lable') }}</a><i class="mdi mdi-record
+                "></i>
+              </li>
+              <li class="ab">
+                <a href="{{route('banner.index')}}">Banner {{ trans('lang_data.listing_lable') }}</a><i class="mdi mdi-record"></i>
+              <li class="ab active">
+                 {{ trans('lang_data.edit_lable') }} Banner
+              </li>
 
-        </ul>
-    @endif
+            </ul>
+    </div>
+@else
+<ul class="ab">
+    <li class="ab">
+        <a href="{{route('admin')}}">{{ trans('lang_data.home_lable') }}</a><i class="mdi mdi-record"></i>
+      </li>
+      <li class="ab">
+        <a href="{{route('banner.index')}}">Banner {{ trans('lang_data.listing_lable') }}</a><i class="mdi mdi-record
+        "></i>
+      <li class="ab active">
+         {{ trans('lang_data.add_lable') }} Banner
+      </li>
+
+    </ul>
+@endif
 
     <h3 class="ab">
        &nbsp; @if (isset($editdata))
-            {{ trans('lang_data.edit_lable') }} Categories
+            {{ trans('lang_data.edit_lable') }} Banner
         @else
-        {{ trans('lang_data.add_lable') }} Categories
+        {{ trans('lang_data.add_lable') }} Banner
         @endif
     </h3>
 
     @if (isset($editdata))
         {!! Form::model($editdata, [
-            'url' => route('categories.update', $editdata->id),
-            'id' => 'categories',
+            'url' => route('banner.update', $editdata->id),
+            'id' => 'baneer',
             'method' => 'put',
             'enctype' => 'multipart/form-data',
         ]) !!}
     @else
         {!! Form::open([
-            'url' => route('categories.store'),
-            'id' => 'categories',
+            'url' => route('banner.store'),
+            'id' => 'banner',
             'method' => 'post',
             'enctype' => 'multipart/form-data',
         ]) !!}
@@ -107,7 +103,7 @@
 
     {!! Form::submit(''.trans('lang_data.submit_lable').'', ['class' => 'btn btn-primary']) !!}
 
-    <a href="{{ route('categories.index') }}" class="btn btn-danger">{{ trans('lang_data.cancle_lable') }}</a>
+    <a href="{{ route('banner.index') }}" class="btn btn-danger">{{ trans('lang_data.cancle_lable') }}</a>
 
     {!! Form::close() !!}
 

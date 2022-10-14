@@ -1,6 +1,5 @@
 @extends('admin::adminpannel.layout')
 
-
 @section('content')
     <div class="card">
         <div class="card-body">
@@ -13,19 +12,18 @@
                         "></i>
                     </li>
                     <li class="ab active">
-                        Blog {{ trans('lang_data.listing_lable') }}
+                        Banner {{ trans('lang_data.listing_lable') }}
                     </li>
                 </ul>
             </div>
 
+
             <div>
-                <h3 class="ab"> &nbsp; Blog {{ trans('lang_data.listing_lable') }}
+                <h3 class="ab"> &nbsp; Banner {{ trans('lang_data.listing_lable') }}
                 </h3>
             </div>
 
-
-
-            <h4><a href="{{ route('blog.create') }}" class="btn btn-info btn-sm">{{ trans('lang_data.addnew_lable') }}
+            <h4><a href="{{ route('banner.create') }}" class="btn btn-info btn-sm">{{ trans('lang_data.addnew_lable') }}
                 </a></h4>
 
             <div class="table-responsive">
@@ -33,9 +31,7 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Title</th>
-                            <th>Categories</th>
-                            <th>Tags</th>
+                            <th>Name</th>
                             <th>Image</th>
                             <th>{{ trans('lang_data.status_lable') }}</th>
                             <th>{{ trans('lang_data.action_lable') }}</th>
@@ -57,7 +53,7 @@
             searching: false,
             responsive: true,
             ajax: {
-                url: '{!! route('blog.listing') !!}',
+                url: '{!! route('banner.listing') !!}',
                 data: function(d) {
 
                 }
@@ -66,13 +62,7 @@
                     data: 'id'
                 },
                 {
-                    data: 'title'
-                },
-                {
-                    data: 'categories'
-                },
-                {
-                    data: 'tags'
+                    data: 'name'
                 },
                 {
                     data: 'image'

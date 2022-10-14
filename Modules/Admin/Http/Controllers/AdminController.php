@@ -14,7 +14,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin::adminpannel.layout');
+        return view('admin::index');
     }
 
     /**

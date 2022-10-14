@@ -13,19 +13,19 @@
                         "></i>
                     </li>
                     <li class="ab active">
-                        Blog {{ trans('lang_data.listing_lable') }}
+                        Social_Media {{ trans('lang_data.listing_lable') }}
                     </li>
                 </ul>
             </div>
 
             <div>
-                <h3 class="ab"> &nbsp; Blog {{ trans('lang_data.listing_lable') }}
+                <h3 class="ab"> &nbsp; Social_Media {{ trans('lang_data.listing_lable') }}
                 </h3>
             </div>
 
 
 
-            <h4><a href="{{ route('blog.create') }}" class="btn btn-info btn-sm">{{ trans('lang_data.addnew_lable') }}
+            <h4><a href="{{ route('social_media.create') }}" class="btn btn-info btn-sm">{{ trans('lang_data.addnew_lable') }}
                 </a></h4>
 
             <div class="table-responsive">
@@ -34,8 +34,7 @@
                         <tr>
                             <th>Id</th>
                             <th>Title</th>
-                            <th>Categories</th>
-                            <th>Tags</th>
+                            <th>link</th>
                             <th>Image</th>
                             <th>{{ trans('lang_data.status_lable') }}</th>
                             <th>{{ trans('lang_data.action_lable') }}</th>
@@ -57,7 +56,7 @@
             searching: false,
             responsive: true,
             ajax: {
-                url: '{!! route('blog.listing') !!}',
+                url: '{!! route('social.listing') !!}',
                 data: function(d) {
 
                 }
@@ -69,10 +68,7 @@
                     data: 'title'
                 },
                 {
-                    data: 'categories'
-                },
-                {
-                    data: 'tags'
+                    data: 'link'
                 },
                 {
                     data: 'image'

@@ -15,6 +15,8 @@ $langdata = [
 'action_lable' => 'Action',
 'submit_lable' => 'Submit',
 'cancle_lable' => 'Cancle',
+'home_lable' => 'Home',
+'view_lable' => 'View',
 ];
 
 return $langdata;

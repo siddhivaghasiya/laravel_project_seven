@@ -1,16 +1,28 @@
 @extends('admin::adminpannel.layout')
 
 
-@section('body')
+@section('content')
 
       <div class="card">
         <div class="card-body">
+
+            <div>
+                <ul class="ab">
+                    <li class="ab">
+                        <a href="{{ route('admin') }}">{{ trans('lang_data.home_lable') }}</a><i
+                            class="mdi mdi-record
+                        "></i>
+                    </li>
+                    <li class="ab active">
+                        Categories {{ trans('lang_data.listing_lable') }}
+                    </li>
+                </ul>
+            </div>
+
             <div>
                 <h3 class="ab"> &nbsp; Categories {{trans('lang_data.listing_lable')}}
                 </h3>
             </div>
-
-
 
             <h4><a href="{{ route('categories.create') }}" class="btn btn-info btn-sm">{{trans('lang_data.addnew_lable')}}
             </a></h4>

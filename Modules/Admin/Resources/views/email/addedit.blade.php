@@ -12,10 +12,10 @@
                     <a href="{{ route('admin') }}">{{ trans('lang_data.home_lable') }}</a><i class="mdi mdi-record"></i>
                 </li>
                 <li class="ab">
-                    <a href="{{ route('categories.index') }}">Categories {{ trans('lang_data.listing_lable') }}</a><i
+                    <a href="{{ route('email.index') }}">Email {{ trans('lang_data.listing_lable') }}</a><i
                         class="mdi mdi-record"></i>
                 <li class="ab active">
-                    {{ trans('lang_data.edit_lable') }} Categories
+                    {{ trans('lang_data.edit_lable') }} Email
                 </li>
 
             </ul>
@@ -23,16 +23,12 @@
     @else
         <ul class="ab">
             <li class="ab">
-                <a href="{{ route('admin') }}">{{ trans('lang_data.home_lable') }}</a><i
-                    class="mdi mdi-record
-    "></i>
+                <a href="{{ route('admin') }}">{{ trans('lang_data.home_lable') }}</a><i class="mdi mdi-record"></i>
             </li>
             <li class="ab">
-                <a href="{{ route('categories.index') }}">Categories {{ trans('lang_data.listing_lable') }}</a><i
-                    class="mdi mdi-record
-    "></i>
+                <a href="{{ route('email.index') }}">Email {{ trans('lang_data.listing_lable') }}</a><i class="mdi mdi-record"></i>
             <li class="ab active">
-                {{ trans('lang_data.add_lable') }} Categories
+                {{ trans('lang_data.add_lable') }} Email
             </li>
 
         </ul>
@@ -40,23 +36,23 @@
 
     <h3 class="ab">
        &nbsp; @if (isset($editdata))
-            {{ trans('lang_data.edit_lable') }} Categories
+            {{ trans('lang_data.edit_lable') }} Email
         @else
-        {{ trans('lang_data.add_lable') }} Categories
+        {{ trans('lang_data.add_lable') }} Email
         @endif
     </h3>
 
     @if (isset($editdata))
         {!! Form::model($editdata, [
-            'url' => route('categories.update', $editdata->id),
-            'id' => 'categories',
+            'url' => route('email.update', $editdata->id),
+            'id' => 'email',
             'method' => 'put',
             'enctype' => 'multipart/form-data',
         ]) !!}
     @else
         {!! Form::open([
-            'url' => route('categories.store'),
-            'id' => 'categories',
+            'url' => route('email.store'),
+            'id' => 'email',
             'method' => 'post',
             'enctype' => 'multipart/form-data',
         ]) !!}
@@ -64,33 +60,40 @@
 
      @csrf
 
-    <div class="form-group">
-        <label>Name:</label>
-        {!! Form::text('name', null, [
-            'id' => 'name',
-            'placeholder' => 'Enter name',
+     <div class="form-group">
+        <label>Title:</label>
+        {!! Form::text('title', null, [
+            'id' => 'title',
+            'placeholder' => 'Enter title',
             'class' => 'form-control',
         ]) !!}
-        @if ($errors->has('name'))
-            <span class="text-danger">{{ $errors->first('name') }}</span>
+        @if ($errors->has('title'))
+            <span class="text-danger">{{ $errors->first('title') }}</span>
         @endif
     </div>
 
     <div class="form-group">
-       <div>
-        <label>Image:</label>
-        </div>
-        {!! Form::file('image', null, [
-            'id' => 'image',
+        <label>From:</label>
+        {!! Form::email('from', null, [
+            'id' => 'from',
+            'placeholder' => 'Enter your email',
             'class' => 'form-control',
         ]) !!}
-
-        <div>
-            @if ($errors->has('image'))
-            <span class="text-danger">{{ $errors->first('image') }}</span>
+        @if ($errors->has('from'))
+            <span class="text-danger">{{ $errors->first('from') }}</span>
         @endif
-        </div>
+    </div>
 
+    <div class="form-group">
+        <label>Subject:</label>
+        {!! Form::text('subject', null, [
+            'id' => 'subject',
+            'placeholder' => 'Enter subject',
+            'class' => 'form-control',
+        ]) !!}
+        @if ($errors->has('subject'))
+            <span class="text-danger">{{ $errors->first('subject') }}</span>
+        @endif
     </div>
 
     <div class="form-group">
@@ -107,7 +110,7 @@
 
     {!! Form::submit(''.trans('lang_data.submit_lable').'', ['class' => 'btn btn-primary']) !!}
 
-    <a href="{{ route('categories.index') }}" class="btn btn-danger">{{ trans('lang_data.cancle_lable') }}</a>
+    <a href="{{ route('email.index') }}" class="btn btn-danger">{{ trans('lang_data.cancle_lable') }}</a>
 
     {!! Form::close() !!}
 

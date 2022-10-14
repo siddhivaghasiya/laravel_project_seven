@@ -1,18 +1,3 @@
-     <!-- partial:partials/_footer.html -->
-     <footer class="footer">
-        <div class="d-sm-flex justify-content-center justify-content-sm-between">
-          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block"> 2022 © Developed By siddhi vaghasiya </span>
-        </div>
-
-      </footer>
-      <!-- partial -->
-    </div>
-    <!-- main-panel ends -->
-  </div>
-  <!-- page-body-wrapper ends -->
-</div>
-<!-- container-scroller -->
-
 <!-- plugins:js -->
 <script src="{{ asset('theme/vendors/js/vendor.bundle.base.js') }}"></script>
 <!-- endinject -->
@@ -40,6 +25,3 @@
   <script src="{{asset('theme/jquery.validate.min.js')}}"></script>
   <script src="{{asset('theme/additional-methods.min.js')}}"></script>
 
-</body>
-
-</html>
