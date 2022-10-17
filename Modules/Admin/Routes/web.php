@@ -18,6 +18,8 @@ Route::prefix('admin')->group(function() {
 
 Route::get('/','Admincontroller@index')->name('admin');
 
+Route::any('/save_tinymce_image', 'AdminController@saveTinymceImage')->name("save_tinymce_image");
+
 // blog
 
 Route::get('blog/view','BlogController@ajaxlisting')->name('blog.listing');
@@ -82,3 +84,17 @@ Route::resource('modules','ModulesController');
 Route::get('setting/view','SettingController@ajaxlisting')->name('setting.listing');
 
 Route::resource('setting','SettingController');
+
+//web_traffic
+
+Route::get('web_traffic/view','Web_trafficController@ajaxlisting')->name('web_traffic.listing');
+
+Route::resource('web_traffic','Web_trafficController');
+
+//delete image
+
+Route::post('delete_logo','SettingController@delete_logo')->name('delete_logo');
+Route::post('delete_faviconlogo','SettingController@delete_faviconlogo')->name('delete_faviconlogo');
+Route::post('delete_emaillogo','SettingController@delete_emaillogo')->name('delete_emaillogo');
+Route::post('delete_defaultbanner','SettingController@delete_defaultbanner')->name('delete_defaultbanner');
+Route::post('delete_authirimage','SettingController@delete_authorimage')->name('delete_authorimage');

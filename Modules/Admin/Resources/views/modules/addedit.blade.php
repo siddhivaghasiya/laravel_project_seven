@@ -8,14 +8,13 @@
                 <div>
                     <ul class="ab">
                         <li class="ab">
-                            <a href="{{ route('admin') }}">{{ trans('lang_data.home_lable') }}</a><i
-                                class="mdi mdi-record"></i>
+                            <a href="{{ route('admin') }}">{{ trans('lang_data.home_lable') }}</a><i class="mdi mdi-record"></i>
                         </li>
                         <li class="ab">
-                            <a href="{{ route('categories.index') }}">Categories {{ trans('lang_data.listing_lable') }}</a><i
+                            <a href="{{ route('tags.index') }}"> Modules {{ trans('lang_data.listing_lable') }}</a><i
                                 class="mdi mdi-record"></i>
                         <li class="ab active">
-                            {{ trans('lang_data.edit_lable') }} Categories
+                            {{ trans('lang_data.edit_lable') }} Modules
                         </li>
 
                     </ul>
@@ -23,16 +22,12 @@
             @else
                 <ul class="ab">
                     <li class="ab">
-                        <a href="{{ route('admin') }}">{{ trans('lang_data.home_lable') }}</a><i
-                            class="mdi mdi-record
-    "></i>
+                        <a href="{{ route('admin') }}">{{ trans('lang_data.home_lable') }}</a><i class="mdi mdi-record "></i>
                     </li>
                     <li class="ab">
-                        <a href="{{ route('categories.index') }}">Categories {{ trans('lang_data.listing_lable') }}</a><i
-                            class="mdi mdi-record
-    "></i>
+                        <a href="{{ route('tags.index') }}">Modules {{ trans('lang_data.listing_lable') }}</a><i class="mdi mdi-record"></i>
                     <li class="ab active">
-                        {{ trans('lang_data.add_lable') }} Categories
+                        {{ trans('lang_data.add_lable') }} Modules
                     </li>
 
                 </ul>
@@ -40,23 +35,23 @@
 
             <h3 class="ab">
                 &nbsp; @if (isset($editdata))
-                    {{ trans('lang_data.edit_lable') }} Categories
+                    {{ trans('lang_data.edit_lable') }} Modules
                 @else
-                    {{ trans('lang_data.add_lable') }} Categories
+                    {{ trans('lang_data.add_lable') }} Modules
                 @endif
             </h3>
 
             @if (isset($editdata))
                 {!! Form::model($editdata, [
-                    'url' => route('categories.update', $editdata->id),
-                    'id' => 'categories',
+                    'url' => route('modules.update', $editdata->id),
+                    'id' => 'modules',
                     'method' => 'put',
                     'enctype' => 'multipart/form-data',
                 ]) !!}
             @else
                 {!! Form::open([
-                    'url' => route('categories.store'),
-                    'id' => 'categories',
+                    'url' => route('modules.store'),
+                    'id' => 'modules',
                     'method' => 'post',
                     'enctype' => 'multipart/form-data',
                 ]) !!}
@@ -76,22 +71,6 @@
                 @endif
             </div>
 
-            <div class="form-group">
-                <div>
-                    <label>Image:</label>
-                </div>
-                {!! Form::file('image', null, [
-                    'id' => 'image',
-                    'class' => 'form-control',
-                ]) !!}
-
-                <div>
-                    @if ($errors->has('image'))
-                        <span class="text-danger">{{ $errors->first('image') }}</span>
-                    @endif
-                </div>
-
-            </div>
 
             <div class="form-group">
                 <label>Status:</label>
@@ -107,7 +86,7 @@
 
             {!! Form::submit('' . trans('lang_data.submit_lable') . '', ['class' => 'btn btn-primary']) !!}
 
-            <a href="{{ route('categories.index') }}" class="btn btn-danger">{{ trans('lang_data.cancle_lable') }}</a>
+            <a href="{{ route('modules.index') }}" class="btn btn-danger">{{ trans('lang_data.cancle_lable') }}</a>
 
             {!! Form::close() !!}
 

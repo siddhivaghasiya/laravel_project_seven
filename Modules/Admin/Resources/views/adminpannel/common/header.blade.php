@@ -348,8 +348,8 @@
                    </a>
                    <div class="collapse" id="ui-basicc">
                        <ul class="nav flex-column sub-menu">
-                           <li class="nav-item"> <a class="nav-link" href="">CMS</a></li>
-                           <li class="nav-item"> <a class="nav-link" href="">Modules</a></li>
+                           <li class="nav-item"> <a class="nav-link" href="{{ route('cms.index') }}">CMS</a></li>
+                           <li class="nav-item"> <a class="nav-link" href="{{  route('modules.index')  }}">Modules</a></li>
                        </ul>
                    </div>
                </li>
@@ -363,10 +363,24 @@
                    </a>
                    <div class="collapse" id="ui-basiccc">
                        <ul class="nav flex-column sub-menu">
-                           <li class="nav-item"> <a class="nav-link" href="">Setting</a></li>
+                           <li class="nav-item"> <a class="nav-link" href="{{ route('setting.index') }}">Setting</a></li>
                        </ul>
                    </div>
                </li>
+
+               <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#ui-History" aria-expanded="false"
+                    aria-controls="ui-History">
+                    <i class="mdi mdi-history menu-icon"></i>
+                    <span class="menu-title">History</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse" id="ui-History">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('web_traffic.index') }}">Web Traffic</a></li>
+                    </ul>
+                </div>
+            </li>
 
            </ul>
        </nav>

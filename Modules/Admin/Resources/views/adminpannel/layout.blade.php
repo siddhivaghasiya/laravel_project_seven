@@ -29,7 +29,16 @@
     <script src="{{ asset('theme/additional-methods.min.js') }}"></script>
 
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+
+
     <style>
+        img.ab {
+    width: 104px;
+    height: 106px;
+
+}
+
         h3.ab {
             background-color: #4B49AC;
             padding: 15px;
@@ -104,7 +113,7 @@
     </div>
 
     @include('admin::adminpannel.common.footer')
-
+@yield('script')
 </body>
 
 </html>
